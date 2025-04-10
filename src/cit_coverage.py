@@ -49,9 +49,3 @@ def get_coverage(code: str, func_name: str, func_kwargs: dict = {}) -> List[int]
     os.remove(tmp_path)
 
     return executed_lines
-
-def intersect_coverage(coverage_list):
-    # Intersection of coverage lists (should stay the same)
-    if not coverage_list:
-        return set()
-    return set.intersection(*coverage_list)

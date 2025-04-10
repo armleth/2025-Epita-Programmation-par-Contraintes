@@ -1,7 +1,7 @@
 import itertools
 import random
 from collections import defaultdict
-from cit_coverage import get_coverage, intersect_coverage
+from cit_coverage import get_coverage
 
 def build_locating_array_matrix(test_array, param_values, display=False):
     """
@@ -56,7 +56,7 @@ def get_pair_coverages(code, func_name, locating_array, test_array, param_values
     # For each pair, compute the number of intersected lines
     pair_coverage_matrix = {}
     for pair, test_indices in locating_array.items():
-        coverages = [test_coverages[i] for i in test_indices]
+        coverages = [set(test_coverages[i]) for i in test_indices]
         intersection_size = len(set.intersection(*coverages)) if coverages else 0
         pair_coverage_matrix[pair] = intersection_size
 
