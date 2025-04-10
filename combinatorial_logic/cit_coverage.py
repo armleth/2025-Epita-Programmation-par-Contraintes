@@ -3,6 +3,7 @@ def get_coverage(test):
     return {f"{param}={value}" for param, value in test.items()}
 
 def intersect_coverage(coverage_list):
+    # Intersection of coverage lists (should stay the same)
     if not coverage_list:
         return set()
     return set.intersection(*coverage_list)
