@@ -37,7 +37,7 @@ def build_locating_array_matrix(test_array, param_values, display=False):
     return locating_array
 
 
-def get_pair_coverages(locating_array, test_array, param_values, display=False):
+def get_pair_coverages(code, func_name, locating_array, test_array, param_values, display=False):
     """
     Builds and prints a 2-way pair coverage matrix based on actual test coverage data.
 

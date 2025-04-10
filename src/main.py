@@ -1,6 +1,7 @@
 from itertools import pairwise
 import chat
 import twise
+import weighted_cit
 import io_utils
 import testsuite
 import coverage_utils
@@ -45,6 +46,8 @@ def generate_and_run_testsuite(filename, function_name):
     pairwise_test_set = twise.t_wise_testing(values, [], t=3)
     logging.info(f"Total test cases generated: {len(pairwise_test_set)}")
 
+    weighted_twise_test_set = weighted_cit.weighted_cit_testing(io.utils.get_function_code_from_file(filename), function_name, values, []) 
+    
     # 6. Evaluation
     print()
     logging.info("Starting evaluation...")
