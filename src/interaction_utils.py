@@ -56,9 +56,12 @@ def get_pair_coverages(code, func_name, locating_array, test_array, param_values
     # For each pair, compute the number of intersected lines
     pair_coverage_matrix = {}
     for pair, test_indices in locating_array.items():
-        coverages = [set(test_coverages[i]) for i in test_indices]
-        intersection_size = len(set.intersection(*coverages)) if coverages else 0
-        pair_coverage_matrix[pair] = intersection_size
+        coverages = [test_coverages[i] for i in test_indices]
+        total_coverage = set()
+        for cov in coverages:
+            for line in cov:
+                total_coverage.add(line)
+        pair_coverage_matrix[pair] = len(total_coverage)
 
     if display:
         print(f"\n{'Pair':<50} | Test Indices       | #Intersected Lines")
