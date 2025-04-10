@@ -40,7 +40,7 @@ t = 2
 test_suite = t_wise_testing(params, values, constraints, t=t)
 
 locating_array = build_locating_array_matrix(test_suite, values)
-pair_coverages = get_pair_coverages(locating_array, test_suite, values, display=False)
+pair_coverages = get_pair_coverages(code, func_name, locating_array, test_suite, values, display=False)
 pair_impacts = get_pair_impact(pair_coverages, display=False)
 param_impacts = get_param_impact(pair_coverages, display=False)
 correlation_matrix = get_pair_correlation_matrix(param_impacts, pair_impacts, display=False)
