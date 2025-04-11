@@ -2,7 +2,7 @@ from uniform_t_way import *
 from mixed_t_way import *
 from interaction_utils import *
 
-def weighted_cit_testing(code, func_name, values, constraints, display=False):
+def weighted_cit_testing(filename, func_name, values, constraints, display=False):
     params = list(values.keys())
 
     # initial pair wise test suite
@@ -10,7 +10,7 @@ def weighted_cit_testing(code, func_name, values, constraints, display=False):
 
     # weighting parameter impact
     locating_array = build_locating_array_matrix(test_suite, values)
-    pair_coverages = get_pair_coverages(code, func_name, locating_array, test_suite, values, display=False)
+    pair_coverages = get_pair_coverages(filename, func_name, locating_array, test_suite, values, display=True)
     pair_impacts = get_pair_impact(pair_coverages, display=False)
     param_impacts = get_param_impact(pair_coverages, display=False)
     correlation_matrix = get_pair_correlation_matrix(param_impacts, pair_impacts, display=False)

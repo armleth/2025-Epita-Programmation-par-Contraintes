@@ -46,7 +46,7 @@ def generate_and_run_testsuite(filename, function_name):
     pairwise_test_set = twise.t_wise_testing(values, [], t=3)
     logging.info(f"Total test cases generated: {len(pairwise_test_set)}")
 
-    weighted_twise_test_set = weighted_cit.weighted_cit_testing(io.utils.get_function_code_from_file(filename), function_name, values, []) 
+    weighted_twise_test_set = weighted_cit.weighted_cit_testing(filename, function_name, values, []) 
     
     # 6. Evaluation
     print()
@@ -55,6 +55,7 @@ def generate_and_run_testsuite(filename, function_name):
         # "All Combinations": all_test_cases,
         "10_Sample": initial_test_set,
         "Pairwise": pairwise_test_set,
+        "Weighted": weighted_twise_test_set,
     }
     for strategy in strategies.keys():
         print(
@@ -73,6 +74,6 @@ def generate_and_run_testsuite(filename, function_name):
     return
 
 
-# generate_and_run_testsuite("./tests/test_twise.py", "configure_volume")
+generate_and_run_testsuite("./tests/test_twise.py", "configure_volume")
 # generate_and_run_testsuite("./tests/test_discout.py", "calculate_discount")
-generate_and_run_testsuite("./tests/complex.py", "complex")
+# generate_and_run_testsuite("./tests/complex.py", "complex")

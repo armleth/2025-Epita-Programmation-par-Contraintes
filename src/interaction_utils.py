@@ -1,5 +1,8 @@
 import itertools
 import random
+import coverage_utils
+import io_utils
+import testsuite
 from collections import defaultdict
 from cit_coverage import get_coverage
 
@@ -37,7 +40,7 @@ def build_locating_array_matrix(test_array, param_values, display=False):
     return locating_array
 
 
-def get_pair_coverages(code, func_name, locating_array, test_array, param_values, display=False):
+def get_pair_coverages(filename, func_name, locating_array, test_array, param_values, display=False):
     """
     Builds and prints a 2-way pair coverage matrix based on actual test coverage data.
 
@@ -51,7 +54,10 @@ def get_pair_coverages(code, func_name, locating_array, test_array, param_values
         dict: Mapping from ((p1, v1), (p2, v2)) to number of intersected coverage lines.
     """
     # Precompute coverage for all tests
-    test_coverages = [get_coverage(test) for test in test_array]
+    test_coverages = []
+    for test in test_array:
+        cov = get_coverage(testsuite.generate_test_suite(io_utils.load_function_from_file(filename, func_name), [test]), filename)
+        test_coverages.append(cov)
 
     # For each pair, compute the number of intersected lines
     pair_coverage_matrix = {}
